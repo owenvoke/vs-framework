@@ -1,0 +1,11 @@
+{
+  "require": {
+    "nezamy/route": "1.0.*",
+    "smarty/smarty": "3.1.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "VS\\": "src/"
+    }
+  }
+}

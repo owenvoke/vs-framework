@@ -1,0 +1,4 @@
+/vendor
+/.vagrant
+/logs
+/ubuntu*-console.log
