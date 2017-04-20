@@ -10,6 +10,9 @@ use VS\User\Account;
  */
 class Controller
 {
+    protected $query;
+    protected $body;
+    protected $args;
     /**
      * @var \Smarty
      */
