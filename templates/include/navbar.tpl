@@ -31,7 +31,7 @@
                     </li>
                 {else}
                     <li><a href="/register">Sign Up</a></li>
-                    <li><a href="/login">Login</a></li>
+                    <li><a href="/login">Log In</a></li>
                 {/if}
             </ul>
         </div>
