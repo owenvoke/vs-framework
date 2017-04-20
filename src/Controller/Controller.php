@@ -13,6 +13,7 @@ class Controller
 {
     protected $query;
     protected $body;
+    protected $files;
     protected $args;
     /**
      * @var \Smarty
