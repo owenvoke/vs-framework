@@ -26,6 +26,9 @@ class Routes
         $Route->any('/register', [self::CONTROLLERS . 'Auth', 'register']);
         $Route->any('/logout', [self::CONTROLLERS . 'Auth', 'logout']);
 
+        // Videos
+        $Route->any('/upload', [self::CONTROLLERS . 'Videos', 'upload']);
+
         // Generic Fallback Route
         $Route->any(
             '/*',
