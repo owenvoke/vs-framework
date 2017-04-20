@@ -17,7 +17,7 @@ sudo service mysql restart
 
 # ----- MySQL Import
 if [ -f /vagrant/resources/dump.sql ]; then
- cat /vagrant/resources/dump.sql | mysql -uroot -proot vs
+ cat /vagrant/resources/dump.sql | mysql -uroot -proot
 else
  echo '[PROVISION NOTICE] No SQL dump was found'
 fi

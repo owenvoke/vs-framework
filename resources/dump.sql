@@ -1,0 +1,10 @@
+CREATE DATABASE vs;
+
+USE vs;
+
+CREATE TABLE users (
+  id       BIGINT PRIMARY KEY AUTO_INCREMENT UNIQUE,
+  username VARCHAR(200),
+  password VARCHAR(500),
+  email    VARCHAR(300)
+);
