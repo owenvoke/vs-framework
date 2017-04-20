@@ -16,6 +16,7 @@ class Config
     const DB_PASS = 'root';
 
     // Video Configuration
+    const ALLOW_DUPLICATE_FILES = false;
     const MAX_UPLOAD_SIZE = 31457280; // Default to 30MB
     const VALID_MIME_TYPES = [
         'video/mp4',
