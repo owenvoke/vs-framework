@@ -21,4 +21,11 @@ class Router
 
         $route->end();
     }
+
+    public static function redirect($location = '/')
+    {
+        if (!headers_sent()) {
+            header('Location: ' . $location);
+        }
+    }
 }
