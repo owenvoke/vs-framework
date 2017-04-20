@@ -1,3 +1,7 @@
+body {
+    padding-bottom: 1em;
+}
+
 .max100 {
     max-width: 100%
 }
