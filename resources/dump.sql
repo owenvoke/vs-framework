@@ -4,7 +4,7 @@ USE vs;
 
 CREATE TABLE users (
   id       BIGINT PRIMARY KEY AUTO_INCREMENT UNIQUE,
-  username VARCHAR(200),
-  password VARCHAR(500),
-  email    VARCHAR(300)
+  username VARCHAR(200) UNIQUE,
+  email    VARCHAR(300) UNIQUE,
+  password VARCHAR(500)
 );
