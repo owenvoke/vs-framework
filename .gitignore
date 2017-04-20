@@ -2,3 +2,4 @@
 /.vagrant
 /logs
 /ubuntu*-console.log
+/templates_c
