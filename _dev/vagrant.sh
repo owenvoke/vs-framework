@@ -16,11 +16,11 @@ sed -i "s/bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/mysql.conf.d/mysqld
 sudo service mysql restart
 
 # ----- MySQL Import
-# if [ -f /vagrant/_dev/dump.sql ]; then
-#     cat /vagrant/_dev/dump.sql | mysql -uroot -proot marvel_torrents
-# else
-# 	echo '[PROVISION NOTICE] No SQL dump was found'
-# fi
+if [ -f /vagrant/resources/dump.sql ]; then
+ cat /vagrant/resources/dump.sql | mysql -uroot -proot vs
+else
+ echo '[PROVISION NOTICE] No SQL dump was found'
+fi
 
 # ----- Install apache2
 echo '################ INSTALLING APACHE2 ################'
