@@ -27,6 +27,7 @@ class Account
     public function logout()
     {
         $_SESSION['user'] = null;
+        header('Location: /login');
     }
 
     public function register($data)
