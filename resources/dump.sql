@@ -7,7 +7,8 @@ CREATE TABLE IF NOT EXISTS users (
   id       BIGINT PRIMARY KEY AUTO_INCREMENT UNIQUE,
   username VARCHAR(200) UNIQUE,
   email    VARCHAR(300) UNIQUE,
-  password VARCHAR(500)
+  password VARCHAR(500),
+  acl      INT                DEFAULT 1
 );
 
 # Create USERS_INFO table
@@ -42,3 +43,13 @@ CREATE TABLE IF NOT EXISTS video_tags (
   id  BIGINT PRIMARY KEY,
   tag BIGINT
 );
+
+# Create ACLS table
+CREATE TABLE IF NOT EXISTS acls (
+  id   BIGINT PRIMARY KEY AUTO_INCREMENT UNIQUE,
+  name VARCHAR(100)
+);
+
+# Populate basics
+INSERT IGNORE INTO categories (name) VALUES ('Other');
+INSERT IGNORE INTO acls (name) VALUES ('User');
