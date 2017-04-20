@@ -9,12 +9,19 @@ class Config
 {
     // App Configuration
     const APP_NAME = 'VS';
-    const MAX_UPLOAD_SIZE = 31457280; // Default to 30MB
 
     // Database Configuration
     const DB_DSN = 'mysql:host=localhost;dbname=vs';
     const DB_USER = 'root';
     const DB_PASS = 'root';
+
+    // Video Configuration
+    const MAX_UPLOAD_SIZE = 31457280; // Default to 30MB
+    const VALID_MIME_TYPES = [
+        'video/mp4',
+        'video/ogg',
+        'video/webm'
+    ];
 
     /**
      * @var \PDO|null
