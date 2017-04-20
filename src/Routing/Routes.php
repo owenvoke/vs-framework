@@ -21,7 +21,13 @@ class Routes
         $Route->any('/', [self::CONTROLLERS . 'Main', 'index']);
 
         // Generic Fallback Route
-        $Route->any('/*', [self::CONTROLLERS . 'Main', 'error']);
+        $Route->any(
+            '/*',
+            function () {
+                $error_route = self::CONTROLLERS . 'Main';
+                (new $error_route)->error();
+            }
+        );
 
         return $Route;
     }
