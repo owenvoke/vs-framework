@@ -8,13 +8,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">{VS\Config::APP_NAME}</a>
+            <a class="navbar-brand" href="/"><span class="fa fa-fw fa-play"></span> {VS\Config::APP_NAME}</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-left">
-                <li><a href="/browse">Browse</a></li>
-                <li><a href="/upload">Upload</a></li>
+                <li><a href="/browse"><span class="fa fa-fw fa-video-camera"></span> Browse</a></li>
+                <li><a href="/upload"><span class="fa fa-fw fa-upload"></span> Upload</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {if VS\User\Account::auth()}
