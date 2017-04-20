@@ -32,7 +32,8 @@
                         </ul>
                     </li>
                 {else}
-                    <li><a href="/login">Login/Signup</a></li>
+                    <li><a href="/register">Sign Up</a></li>
+                    <li><a href="/login">Login</a></li>
                 {/if}
             </ul>
         </div>
