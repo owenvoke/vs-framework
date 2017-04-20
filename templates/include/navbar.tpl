@@ -24,7 +24,9 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="/logout">Logout</a></li>
+                            <li><a href="/profile"><span class="fa fa-fw fa-user"></span> My Channel</a></li>
+                            <li><a href="/account"><span class="fa fa-fw fa-cogs"></span> Settings</a></li>
+                            <li><a href="/logout"><span class="fa fa-fw fa-sign-out"></span> Logout</a></li>
                         </ul>
                     </li>
                 {else}
