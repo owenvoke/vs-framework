@@ -3,6 +3,7 @@
 namespace VS\Controller;
 
 use System\Request;
+use VS\Config;
 use VS\User\Account;
 
 /**
@@ -21,6 +22,10 @@ class Controller
      * @var Account
      */
     public $user;
+    /**
+     * @var \PDO
+     */
+    public $db;
 
     /**
      * Controller constructor.
@@ -35,5 +40,7 @@ class Controller
         $this->smarty = new \Smarty();
         $this->smarty->setTemplateDir(ROOT_PATH . 'templates');
         $this->smarty->setCompileDir(ROOT_PATH . 'templates_c');
+
+        $this->db = Config::connect();
     }
 }
