@@ -23,6 +23,11 @@ class Account
         return false;
     }
 
+    public static function user($key)
+    {
+        return $_SESSION['user']->$key ?? '';
+    }
+
     public function login($username, $password)
     {
         if (!$username || !$password) {
@@ -66,8 +71,11 @@ class Account
             $stmt->bindParam(':email', $data->email, \PDO::PARAM_STR);
             $stmt->execute();
 
-            $result = $this->db->lastInsertId();
+            $result = (int)$this->db->lastInsertId();
             if ($result != 0) {
+                $stmt = $this->db->prepare('INSERT INTO users_info (id) VALUES (:id)');
+                $stmt->bindParam(':id', $result, \PDO::PARAM_INT);
+                $stmt->execute();
                 header('Location: /login');
                 return true;
             } else {
@@ -75,10 +83,5 @@ class Account
             }
         }
         return false;
-    }
-
-    public static function user($key)
-    {
-        return $_SESSION['user']->$key ?? '';
     }
 }
