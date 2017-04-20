@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS videos (
   hash        VARCHAR(40) UNIQUE,
   title       VARCHAR(400),
   description VARCHAR(1000),
+  uploader    BIGINT,
   category    BIGINT
 );
 
