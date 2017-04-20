@@ -31,7 +31,14 @@
                 <input type="file" id="video" name="video">
                 <p class="help-block">Max size: {VS\Config::MAX_UPLOAD_SIZE|file_size}</p>
             </div>
-            <input class="btn btn-default" type="submit" value="Log In">
+            {if $data->response}
+                <div class="form-group">
+                    <p class="text-danger">
+                        {$data->response}
+                    </p>
+                </div>
+            {/if}
+            <input class="btn btn-default" type="submit" value="Upload">
         </form>
     {else}
         <p class="alert alert-warning">
