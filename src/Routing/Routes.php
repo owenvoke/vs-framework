@@ -3,6 +3,7 @@
 namespace VS\Routing;
 
 use System\Route;
+use VS\Controller\Main;
 
 /**
  * Class Routes
@@ -29,8 +30,7 @@ class Routes
         $Route->any(
             '/*',
             function () {
-                $error_route = self::CONTROLLERS . 'Main';
-                (new $error_route)->error();
+                (new Main)->error();
             }
         );
 
