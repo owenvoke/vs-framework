@@ -14,13 +14,14 @@ class Videos extends Controller
 
         $data->title = $this->body['title'] ?? '';
         $data->description = $this->body['description'] ?? '';
-        $data->category = $this->body['category'] ?? 1;
+        $data->category = (int)$data->category = $this->body['category'] ?? 1;
         $data->file = $this->files['video'] ?? [];
+        $data->response = false;
 
         // Fetch category array of objects
         $data->categories = Video::categories();
 
-        if ($data->title != '' && $data->description != '' && !empty($data->file)) {
+        if ($data->title != '' && !empty($data->file)) {
             $data->response = Video::upload($data);
         }
 
