@@ -19,6 +19,8 @@ class Routes
     {
         // Custom Routes
         $Route->any('/', [self::CONTROLLERS . 'Main', 'index']);
+        $Route->any('/login', [self::CONTROLLERS . 'Auth', 'login']);
+        $Route->any('/register', [self::CONTROLLERS . 'Auth', 'register']);
 
         // Generic Fallback Route
         $Route->any(
