@@ -16,8 +16,8 @@
                 <li><a href="/browse">Browse</a></li>
                 <li><a href="/upload">Upload</a></li>
             </ul>
-            {if VS\User\User::$valid}
-                <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right">
+                {if VS\User\Account::$valid}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown
                             <span class="caret"></span></a>
@@ -31,8 +31,10 @@
                             <li><a href="#">One more separated link</a></li>
                         </ul>
                     </li>
-                </ul>
-            {/if}
+                {else}
+                    <li><a href="/login">Login/Signup</a></li>
+                {/if}
+            </ul>
         </div>
     </div>
 </nav>
