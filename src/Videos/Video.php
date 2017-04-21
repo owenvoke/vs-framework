@@ -19,6 +19,7 @@ class Video
     public $uploader;
     public $category;
     public $tags;
+    public $file_type;
 
     public function __construct($hash)
     {
