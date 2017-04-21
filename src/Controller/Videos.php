@@ -70,4 +70,22 @@ class Videos extends Controller
             fpassthru($video);
         }
     }
+
+    public function thumb()
+    {
+        if (!$this->args['hash']) {
+            Router::redirect();
+        }
+        $data = new Video($this->args['hash']);
+        $file_path = ROOT_PATH . 'uploads' . DS . $data->hash . '.jpg';
+
+        if (file_exists($file_path)) {
+            $thumb = fopen($file_path, 'rb');
+
+            header("Content-Type: image/jpeg");
+            header("Content-Length: " . filesize($file_path));
+
+            fpassthru($thumb);
+        }
+    }
 }

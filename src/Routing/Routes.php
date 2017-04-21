@@ -30,6 +30,7 @@ class Routes
         $Route->any('/v/{hash}', [self::CONTROLLERS . 'Videos', 'show']);
         $Route->any('/upload', [self::CONTROLLERS . 'Videos', 'upload']);
         $Route->any('/videos/{hash}', [self::CONTROLLERS . 'Videos', 'display']);
+        $Route->any('/thumbs/{hash}', [self::CONTROLLERS . 'Videos', 'thumb']);
 
         // Generic Fallback Route
         $Route->any(
