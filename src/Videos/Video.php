@@ -11,6 +11,47 @@ use VS\User\Account;
  */
 class Video
 {
+    public $id;
+    public $hash;
+    public $title;
+    public $description;
+    public $date;
+    public $uploader;
+    public $category;
+    public $tags;
+
+    public function __construct($hash)
+    {
+        $stmt = Config::connect()->prepare('SELECT * FROM videos WHERE hash = :hash');
+        $stmt->bindParam(':hash', $hash, \PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetch(\PDO::FETCH_OBJ);
+        if ($result) {
+
+            foreach ($result as $key => $value) {
+                if (is_numeric($value)) {
+                    $value = (int)$value;
+                }
+                $this->$key = $value;
+            }
+
+            $stmt = Config::connect()->prepare('SELECT id, username FROM users WHERE id = :id');
+            $stmt->bindParam(':id', $this->uploader, \PDO::PARAM_STR);
+            $stmt->execute();
+            $this->uploader = $stmt->fetch(\PDO::FETCH_OBJ);
+
+            $stmt = Config::connect()->prepare('SELECT * FROM video_tags WHERE id = :id');
+            $stmt->bindParam(':id', $this->id, \PDO::PARAM_INT);
+            $stmt->execute();
+            $this->tags = $stmt->fetchAll(\PDO::FETCH_OBJ);
+
+            $stmt = Config::connect()->prepare('SELECT * FROM categories WHERE id = :id');
+            $stmt->bindParam(':id', $this->category, \PDO::PARAM_INT);
+            $stmt->execute();
+            $this->category = $stmt->fetch(\PDO::FETCH_OBJ);
+        }
+    }
+
     /**
      * @param object $data
      * @return bool
