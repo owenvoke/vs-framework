@@ -5,7 +5,7 @@
             <div class="panel panel-default clearfix">
                 <img align="left"
                      class="avatar margin-right-05"
-                     src="{$data->user->info->avatar}"
+                     src="{if $data->user->info->avatar}{$data->user->info->avatar}{else}/assets/images/default_avatar.png{/if}"
                      alt="{$data->user->username}">
                 <div class="panel-group">
                     <div class="user-title">
