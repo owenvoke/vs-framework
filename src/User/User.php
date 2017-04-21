@@ -29,11 +29,13 @@ class User
                 $this->$key = $value;
             }
 
+            // Get user ACL
             $stmt = $db->prepare('SELECT * FROM acls WHERE id = :id');
             $stmt->bindParam(':id', $this->acl, \PDO::PARAM_STR);
             $stmt->execute();
             $this->acl = $stmt->fetch(\PDO::FETCH_OBJ);
 
+            // Get user videos
             if ($limit) {
                 $stmt = $db->prepare('SELECT * FROM videos WHERE uploader = :id LIMIT :limit');
                 $stmt->bindParam(':id', $this->id, \PDO::PARAM_STR);
@@ -42,10 +44,10 @@ class User
                 $stmt = $db->prepare('SELECT * FROM videos WHERE uploader = :id');
                 $stmt->bindParam(':id', $this->id, \PDO::PARAM_STR);
             }
-            var_dump($limit);
             $stmt->execute();
             $this->videos = $stmt->fetchAll(\PDO::FETCH_OBJ);
 
+            // Get user additional info
             $stmt = $db->prepare('SELECT * FROM users_info WHERE id = :id');
             $stmt->bindParam(':id', $this->id, \PDO::PARAM_INT);
             $stmt->execute();
