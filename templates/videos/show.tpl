@@ -19,7 +19,7 @@
                         </li>
                         <li>
                             <span>Uploaded by:</span>
-                            <a href="/channel/{$data->video->uploader->username}">
+                            <a href="/profile/{$data->video->uploader->username}">
                                 {$data->video->uploader->username}
                             </a>
                         </li>
