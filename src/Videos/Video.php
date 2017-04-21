@@ -64,18 +64,23 @@ class Video
         if (!$data->error) {
             $data->uploader = (int)Account::user('id');
             $stmt = Config::connect()->prepare(
-                'INSERT INTO videos (hash, title, description, category, uploader)
-                                VALUES (:hash, :title, :description, :category, :uploader)');
+                'INSERT INTO videos (hash, title, description, category, uploader, date, file_type)
+                                VALUES (:hash, :title, :description, :category, :uploader, :date, :file_type)');
             $stmt->bindParam(':hash', $data->hash, \PDO::PARAM_STR);
             $stmt->bindParam(':title', $data->title, \PDO::PARAM_STR);
             $stmt->bindParam(':description', $data->description, \PDO::PARAM_STR);
             $stmt->bindParam(':category', $data->category, \PDO::PARAM_INT);
             $stmt->bindParam(':uploader', $data->uploader, \PDO::PARAM_INT);
+            $stmt->bindParam(':date', $data->date, \PDO::PARAM_INT);
+            $stmt->bindParam(':file_type', $data->file_type, \PDO::PARAM_STR);
             $stmt->execute();
+            var_dump($stmt);
 
             $data->id = (int)Config::connect()->lastInsertId();
             if ($data->id != 0) {
                 Router::redirect('/v/' . $data->hash);
+            } else {
+                $data->error = 'Failed to upload video.';
             }
         }
 
@@ -101,6 +106,9 @@ class Video
         if (!$data) {
             return false;
         }
+
+        // Set the upload date (UNIX timestamp)
+        $data->date = time();
 
         // Check if user can upload
         if (!$data->can_upload) {
@@ -152,6 +160,19 @@ class Video
         // Check it's a valid mime type
         if (!in_array($data->file['type'], Config::VALID_MIME_TYPES)) {
             $data->error = 'Invalid mime type.';
+            return $data;
+        }
+
+        // Check for date change (this is unlikely)
+        if ($data->time > time()) {
+            $data->error = 'Invalid upload date.';
+            return $data;
+        }
+
+        // Check for invalid file type
+        $data->file_type = pathinfo($data->file['name'], PATHINFO_EXTENSION);
+        if (!$data->file_type) {
+            $data->error = 'Invalid file type.';
             return $data;
         }
 
