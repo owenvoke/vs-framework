@@ -2,10 +2,40 @@ body {
     padding-bottom: 1em;
 }
 
+a.unstyled {
+    text-decoration: none;
+}
+
 .max100 {
     max-width: 100%
 }
 
 .video {
     width: 100%;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+}
+
+.user-title .username {
+    font-size: 3em;
+    line-height: 1em;
+}
+
+.margin-left-05 {
+    margin-left: 0.5em;
+}
+
+.margin-right-05 {
+    margin-right: 0.5em;
+}
+
+.margin-bottom-05 {
+    margin-bottom: 0.5em;
+}
+
+.margin-top-05 {
+    margin-top: 0.5em;
 }
