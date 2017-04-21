@@ -39,3 +39,7 @@ a.unstyled {
 .margin-top-05 {
     margin-top: 0.5em;
 }
+
+.btn.btn-no-click {
+    cursor: default;
+}
