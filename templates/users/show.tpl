@@ -43,7 +43,7 @@
                 <ul class="list-group">
                     <li class="list-group-item">
                         <span class="fa fa-fw fa-clock-o"></span> Joined: <span
-                                class="pull-right">{$data->user->joined|absolute_time}</span>
+                                class="pull-right">{$data->user->joined|absolute_time:'jS M Y'}</span>
                     </li>
                     <li class="list-group-item">
                         <span class="fa fa-fw fa-film"></span> Videos: <span class="pull-right">20</span
@@ -106,7 +106,7 @@
                         <span class="fa fa-fw fa-film"></span>
                         <b>New Videos</b>
                         <span class="pull-right">
-                    <a href="/profile/{$data->user->username}/videos">
+                    <a href="/profile/{$data->user->username}/videos" class="unstyled">
                         <span class="fa fa-fw fa-video-camera"></span>
                         All videos
                     </a>
@@ -125,10 +125,12 @@
                                                      src="/thumbs/{$video->hash}"
                                                      alt="{$video->title}">
                                             </a>
-                                            <span class="badge">{$video->file_type|strtolower}</span>
+                                        </div>
+                                        <div class="pull-right btn btn-xs btn-default btn-no-click margin-top-05">
+                                            {$video->file_type|strtolower}
                                         </div>
                                         <div class="caption">
-                                            <h5 class="video-title">
+                                            <h5 class="padding-top-1" title="{$video->title}">
                                                 <a href="/v/{$video->hash}">{$video->title}</a>
                                             </h5>
                                             <p class="text-muted small">
