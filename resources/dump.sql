@@ -8,7 +8,8 @@ CREATE TABLE IF NOT EXISTS users (
   username VARCHAR(200) UNIQUE,
   email    VARCHAR(300) UNIQUE,
   password VARCHAR(500),
-  acl      INT                DEFAULT 1
+  acl      INT                DEFAULT 1,
+  joined   BIGINT
 );
 
 # Create USERS_INFO table
