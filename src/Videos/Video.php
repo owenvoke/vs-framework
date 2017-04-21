@@ -20,28 +20,20 @@ class Video
         $data = self::validate($data);
 
         if (!$data->error) {
-            $destination = ROOT_PATH . 'resources' . DS . 'videos' . DS . $data->file['name'];
-            if (
-                file_exists($destination) ||
-                move_uploaded_file(
-                    $data->file['tmp_name'],
-                    $destination
-                )
-            ) {
-                $data->uploader = (int)Account::user('id');
-                $stmt = Config::connect()->prepare(
-                    'INSERT INTO videos (hash, title, description, category, uploader)
+            $data->uploader = (int)Account::user('id');
+            $stmt = Config::connect()->prepare(
+                'INSERT INTO videos (hash, title, description, category, uploader)
                                 VALUES (:hash, :title, :description, :category, :uploader)');
-                $stmt->bindParam(':hash', $data->hash, \PDO::PARAM_STR);
-                $stmt->bindParam(':title', $data->title, \PDO::PARAM_STR);
-                $stmt->bindParam(':description', $data->description, \PDO::PARAM_STR);
-                $stmt->bindParam(':category', $data->category, \PDO::PARAM_INT);
-                $stmt->bindParam(':uploader', $data->uploader, \PDO::PARAM_INT);
-                $stmt->execute();
-                $data->id = (int)Config::connect()->lastInsertId();
-                if ($data->id > 0) {
-                    Router::redirect('/v/' . $data->hash);
-                }
+            $stmt->bindParam(':hash', $data->hash, \PDO::PARAM_STR);
+            $stmt->bindParam(':title', $data->title, \PDO::PARAM_STR);
+            $stmt->bindParam(':description', $data->description, \PDO::PARAM_STR);
+            $stmt->bindParam(':category', $data->category, \PDO::PARAM_INT);
+            $stmt->bindParam(':uploader', $data->uploader, \PDO::PARAM_INT);
+            $stmt->execute();
+
+            $data->id = (int)Config::connect()->lastInsertId();
+            if ($data->id != 0) {
+                Router::redirect('/v/' . $data->hash);
             }
         }
 
@@ -74,6 +66,35 @@ class Video
             return $data;
         }
 
+        // Check for set file errors...
+        if ($data->file['error']) {
+            switch ($data->file['error']) {
+                case UPLOAD_ERR_INI_SIZE:
+                case UPLOAD_ERR_FORM_SIZE:
+                    $data->error = 'Upload limit exceeded.';
+                    break;
+                case UPLOAD_ERR_PARTIAL:
+                    $data->error = 'File partially uploaded.';
+                    break;
+                case UPLOAD_ERR_NO_FILE:
+                    $data->error = 'No file selected.';
+                    break;
+                case UPLOAD_ERR_NO_TMP_DIR:
+                    $data->error = 'No temp directory.';
+                    break;
+                case UPLOAD_ERR_CANT_WRITE:
+                    $data->error = 'Unable to write file.';
+                    break;
+                case UPLOAD_ERR_EXTENSION:
+                    $data->error = 'Upload stopped by extension.';
+                    break;
+                default:
+                    $data->error = 'An unknown file error occurred.';
+                    break;
+            }
+            return $data;
+        }
+
         // Check if the file is too large
         if ($data->file['size'] > Config::MAX_UPLOAD_SIZE) {
             $data->error = 'File is too large.';
@@ -92,13 +113,27 @@ class Video
             return $data;
         }
 
+        // Generate file hash
         $data->hash = sha1_file($data->file['tmp_name']);
+
+        // Generate destination path
+        $destination = ROOT_PATH . 'uploads' . DS . $data->file['name'];
+
+        // Check for duplicate (if config is set to disallow duplicates)
         if (!Config::ALLOW_DUPLICATE_FILES) {
             $stmt = Config::connect()->prepare('SELECT * FROM videos WHERE hash = :hash');
             $stmt->bindParam(':hash', $data->hash, \PDO::PARAM_STR);
             $stmt->execute();
-            if ($stmt->rowCount() > 0) {
+            if ($stmt->rowCount() > 0 || file_exists($destination)) {
                 $data->error = 'File is already uploaded.';
+                return $data;
+            }
+        }
+
+        // Attempt to upload file
+        if (!@copy($data->file['tmp_name'], $destination)) {
+            if (!@move_uploaded_file($data->file['tmp_name'], $destination)) {
+                $data->error = 'Unable to save file.';
                 return $data;
             }
         }
