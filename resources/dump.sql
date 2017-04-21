@@ -35,12 +35,12 @@ CREATE TABLE IF NOT EXISTS videos (
   id          BIGINT PRIMARY KEY AUTO_INCREMENT UNIQUE,
   hash        VARCHAR(40) UNIQUE,
   title       VARCHAR(400),
-  description VARCHAR(1000),
+  description VARCHAR(1000)      DEFAULT '',
   uploader    BIGINT,
   category    BIGINT,
   date        BIGINT,
   file_type   VARCHAR(10),
-  views       BIGINT
+  views       BIGINT             DEFAULT 0
 );
 
 # Create VIDEO_TAGS table
