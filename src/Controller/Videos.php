@@ -42,11 +42,32 @@ class Videos extends Controller
         $data = new \stdClass();
         $data->video = new Video($this->args['hash']);
 
+        if (!$data->video->id) {
+            $data->video = false;
+        }
         $this->smarty->display(
             'videos/show.tpl',
             [
                 'data' => $data
             ]
         );
+    }
+
+    public function display()
+    {
+        if (!$this->args['hash']) {
+            Router::redirect();
+        }
+        $data = new Video($this->args['hash']);
+        $file_path = ROOT_PATH . 'uploads' . DS . $data->hash . '.' . $data->file_type;
+
+        if (file_exists($file_path)) {
+            $video = fopen($file_path, 'rb');
+
+            header("Content-Type: " . mime_content_type($file_path));
+            header("Content-Length: " . filesize($file_path));
+
+            fpassthru($video);
+        }
     }
 }
