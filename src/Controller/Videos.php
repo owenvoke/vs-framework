@@ -2,6 +2,7 @@
 
 namespace VS\Controller;
 
+use VS\Routing\Router;
 use VS\User\Account;
 use VS\Videos\Video;
 
@@ -27,6 +28,22 @@ class Videos extends Controller
 
         $this->smarty->display(
             'videos/upload.tpl',
+            [
+                'data' => $data
+            ]
+        );
+    }
+
+    public function show()
+    {
+        if (!$this->args['hash']) {
+            Router::redirect();
+        }
+        $data = new \stdClass();
+        $data->video = new Video($this->args['hash']);
+
+        $this->smarty->display(
+            'videos/show.tpl',
             [
                 'data' => $data
             ]

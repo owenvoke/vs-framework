@@ -6,14 +6,30 @@
         </div>
         <div class="panel-body">
             <div class="panel-group">
-                <video controls src="/videos/{$data->video->hash}">
+                <video class="video" controls src="/videos/{$data->video->hash}">
                     Sorry, your browser doesn't support HTML5 videos.
                 </video>
             </div>
             <div class="panel-group">
-                <h5>Description:</h5>
-                <p>{$data->video->description}</p>
+                <ul class="list-unstyled">
+                    <li>
+                        <span>Uploaded:</span>
+                        <span>{$data->video->date|absolute_time}</span>
+                    </li>
+                    <li>
+                        <span>Uploaded by:</span>
+                        <a href="/channel/{$data->video->uploader->username}">
+                            {$data->video->uploader->username}
+                        </a>
+                    </li>
+                </ul>
             </div>
+            {if $data->video->description}
+                <div class="panel-group">
+                    <h5>Description:</h5>
+                    <p>{$data->video->description}</p>
+                </div>
+            {/if}
         </div>
     </div>
 </div>
