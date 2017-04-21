@@ -16,7 +16,7 @@ class Users extends Controller
         }
 
         $data = new \stdClass();
-        $data->user = new User($username);
+        $data->user = new User($username, 6);
 
         if (!$data->user->id) {
             $data->user = false;

@@ -13,7 +13,7 @@ class User
     public $info;
     public $videos;
 
-    public function __construct($username)
+    public function __construct($username, $limit = null)
     {
         $db = Config::connect();
         $stmt = $db->prepare('SELECT * FROM users WHERE username = :username');
@@ -34,8 +34,15 @@ class User
             $stmt->execute();
             $this->acl = $stmt->fetch(\PDO::FETCH_OBJ);
 
-            $stmt = $db->prepare('SELECT * FROM videos WHERE uploader = :id');
-            $stmt->bindParam(':id', $this->id, \PDO::PARAM_STR);
+            if ($limit) {
+                $stmt = $db->prepare('SELECT * FROM videos WHERE uploader = :id LIMIT :limit');
+                $stmt->bindParam(':id', $this->id, \PDO::PARAM_STR);
+                $stmt->bindParam(':limit', $limit, \PDO::PARAM_INT);
+            } else {
+                $stmt = $db->prepare('SELECT * FROM videos WHERE uploader = :id');
+                $stmt->bindParam(':id', $this->id, \PDO::PARAM_STR);
+            }
+            var_dump($limit);
             $stmt->execute();
             $this->videos = $stmt->fetchAll(\PDO::FETCH_OBJ);
 
