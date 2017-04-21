@@ -74,7 +74,6 @@ class Video
             $stmt->bindParam(':date', $data->date, \PDO::PARAM_INT);
             $stmt->bindParam(':file_type', $data->file_type, \PDO::PARAM_STR);
             $stmt->execute();
-            var_dump($stmt);
 
             $data->id = (int)Config::connect()->lastInsertId();
             if ($data->id != 0) {
