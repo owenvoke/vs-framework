@@ -32,6 +32,9 @@ class Routes
         $Route->any('/videos/{hash}', [self::CONTROLLERS . 'Videos', 'display']);
         $Route->any('/thumbs/{hash}', [self::CONTROLLERS . 'Videos', 'thumb']);
 
+        // Users
+        $Route->any(['/profile', '/profile/{username}'], [self::CONTROLLERS . 'Users', 'show']);
+
         // Generic Fallback Route
         $Route->any(
             '/*',
