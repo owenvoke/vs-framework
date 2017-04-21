@@ -181,6 +181,12 @@ class Video
         // Generate destination path
         $destination = ROOT_PATH . 'uploads' . DS . $data->hash . '.' . $data->file_type;
 
+        // Check if able to create thumbnail
+        if (!self::create_thumbnail($data)) {
+            $data->error = 'Unable to create thumbnail.';
+            return $data;
+        }
+
         // Check for duplicate (if config is set to disallow duplicates)
         if (!Config::ALLOW_DUPLICATE_FILES) {
             $stmt = Config::connect()->prepare('SELECT * FROM videos WHERE hash = :hash');
@@ -201,5 +207,25 @@ class Video
         }
 
         return $data;
+    }
+
+    public static function create_thumbnail($data)
+    {
+        if (!$data) {
+            return false;
+        }
+
+        $data->thumbnail_path = ROOT_PATH . 'uploads' . DS . $data->hash . '.jpg';
+
+        $cmd = "ffmpeg -i {$data->file['tmp_name']} -deinterlace -an -ss 1 -t 00:00:01 -s 250x130 -r 1 -y -vcodec mjpeg -f mjpeg {$data->thumbnail_path} 2>&1";
+
+        exec($cmd, $output, $return_value);
+        var_dump($output);
+
+        if (!$return_value) {
+            return true;
+        }
+
+        return false;
     }
 }
