@@ -5,6 +5,10 @@ echo '################ UPDATING SYSTEM ################'
 sudo apt-get update -q
 sudo apt-get upgrade -qqy
 
+# ----- Install FFMPEG (for creating thumbnails)
+echo '################ UPDATING SYSTEM ################'
+sudo apt-get install ffmpeg -y
+
 # ----- Install MySQL
 echo '################ INSTALLING MYSQL ################'
 debconf-set-selections <<< "mysql-server mysql-server/root_password password root"
