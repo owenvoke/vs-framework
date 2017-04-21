@@ -180,7 +180,7 @@ class Video
         $data->hash = sha1_file($data->file['tmp_name']);
 
         // Generate destination path
-        $destination = ROOT_PATH . 'uploads' . DS . $data->file['name'];
+        $destination = ROOT_PATH . 'uploads' . DS . $data->hash . '.' . $data->file_type;
 
         // Check for duplicate (if config is set to disallow duplicates)
         if (!Config::ALLOW_DUPLICATE_FILES) {
