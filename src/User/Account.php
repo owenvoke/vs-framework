@@ -62,13 +62,16 @@ class Account
             return false;
         }
 
+        $data->joined = time();
+
         if ($data->password == $data->password_confirm) {
             $data->password = password_hash($data->password, PASSWORD_DEFAULT);
 
-            $stmt = $this->db->prepare('INSERT INTO users (username, password, email) VALUES (:username, :password, :email)');
+            $stmt = $this->db->prepare('INSERT INTO users (username, password, email, joined) VALUES (:username, :password, :email, :joined)');
             $stmt->bindParam(':username', $data->username, \PDO::PARAM_STR);
             $stmt->bindParam(':password', $data->password, \PDO::PARAM_STR);
             $stmt->bindParam(':email', $data->email, \PDO::PARAM_STR);
+            $stmt->bindParam(':joined', $data->joined, \PDO::PARAM_STR);
             $stmt->execute();
 
             $result = (int)$this->db->lastInsertId();
