@@ -3,7 +3,9 @@
     {if $data->user}
         <div class="col-md-12">
             <div class="panel panel-default clearfix">
-                <img align="left" class="avatar margin-right-05" src="{$data->user->info->avatar}"
+                <img align="left"
+                     class="avatar margin-right-05"
+                     src="{$data->user->info->avatar}"
                      alt="{$data->user->username}">
                 <div class="panel-group">
                     <div class="user-title">
