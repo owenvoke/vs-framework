@@ -39,7 +39,8 @@ CREATE TABLE IF NOT EXISTS videos (
   uploader    BIGINT,
   category    BIGINT,
   date        BIGINT,
-  file_type   VARCHAR(10)
+  file_type   VARCHAR(10),
+  views       BIGINT
 );
 
 # Create VIDEO_TAGS table
