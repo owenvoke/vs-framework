@@ -3,7 +3,7 @@
 ## Running with Vagrant
 1. Clone via Git with `git clone https://github.com/PXgamer/project-generic-video-site`
 2. Just run `vagrant up` in the root directory.
-3. That's all
+3. That's all, just browse to: [http://192.168.69.69](http://192.168.69.69)
 
 ## Setting up a Vagrant SSH tunnel
 _This basically allows you to connect to the internal MySQL server running on Vagrant from an app such as PhpStorm._
