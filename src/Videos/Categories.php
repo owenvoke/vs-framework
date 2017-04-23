@@ -1,8 +1,8 @@
 <?php
 
-namespace VS\Videos;
+namespace VS\Framework\Videos;
 
-use VS\Config;
+use VS\Framework\Config;
 
 /**
  * Class Categories

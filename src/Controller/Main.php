@@ -1,6 +1,6 @@
 <?php
 
-namespace VS\Controller;
+namespace VS\Framework\Controller;
 
 class Main extends Controller
 {

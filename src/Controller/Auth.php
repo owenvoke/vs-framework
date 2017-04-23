@@ -1,9 +1,9 @@
 <?php
 
-namespace VS\Controller;
+namespace VS\Framework\Controller;
 
-use VS\Routing\Router;
-use VS\User\Account;
+use VS\Framework\Routing\Router;
+use VS\Framework\User\Account;
 
 class Auth extends Controller
 {

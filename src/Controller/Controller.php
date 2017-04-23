@@ -1,10 +1,10 @@
 <?php
 
-namespace VS\Controller;
+namespace VS\Framework\Controller;
 
 use System\Request;
-use VS\Config;
-use VS\User\Account;
+use VS\Framework\Config;
+use VS\Framework\User\Account;
 
 /**
  * Class Controller

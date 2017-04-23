@@ -12,8 +12,8 @@
                         <span class="username">{$data->user->username}</span>
                         <div class="pull-right btn-group">
                             <a class="btn btn-primary btn-sm margin-right-05 margin-top-05"
-                               href="{if VS\User\Account::auth()}/subscribe/{$data->user->username}{else}/login{/if}">
-                                {if VS\User\Account::auth()}
+                               href="{if VS\Framework\User\Account::auth()}/subscribe/{$data->user->username}{else}/login{/if}">
+                                {if VS\Framework\User\Account::auth()}
                                     <span class="fa fa-fw fa-plus"></span>
                                     Subscribe
                                 {else}
@@ -21,7 +21,7 @@
                                     Login to subscribe
                                 {/if}
                             </a>
-                            {if VS\User\Account::auth()}
+                            {if VS\Framework\User\Account::auth()}
                                 <a class="btn btn-warning btn-sm margin-right-05 margin-top-05"
                                    href="/actions/report/{$data->user->username}">
                                     <span class="fa fa-fw fa-flag"></span>
@@ -50,7 +50,7 @@
                     <li class="list-group-item">
                         <span class="fa fa-fw fa-film"></span> Videos: <span class="pull-right">20</span
                     </li>
-                    {if !VS\User\Account::auth()}
+                    {if !VS\Framework\User\Account::auth()}
                         <li class="list-group-item">
                             <a href="/register">Sign up</a> or
                             <a href="/login">log in</a> to add {$data->user->username} as a contact!
@@ -70,7 +70,7 @@
                 </div>
 
                 <div class="panel-body">
-                    {if VS\User\Account::auth()}
+                    {if VS\Framework\User\Account::auth()}
                         <div class="btn-group btn-group-justified">
                             <a class="btn btn-default" href="/actions/friend/{$data->user->username}">
                                 <span class="fa fa-fw fa-address-book"></span>

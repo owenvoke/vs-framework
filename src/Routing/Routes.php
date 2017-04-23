@@ -1,16 +1,16 @@
 <?php
 
-namespace VS\Routing;
+namespace VS\Framework\Routing;
 
 use System\Route;
-use VS\Controller\Main;
+use VS\Framework\Controller\Main;
 
 /**
  * Class Routes
  */
 class Routes
 {
-    const CONTROLLERS = '\\VS\\Controller\\';
+    const CONTROLLERS = '\\VS\\Framework\\Controller\\';
 
     /**
      * @param Route $Route

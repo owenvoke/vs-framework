@@ -1,6 +1,6 @@
 <?php
 
-namespace VS\Routing;
+namespace VS\Framework\Routing;
 
 use System\App;
 use System\Request;

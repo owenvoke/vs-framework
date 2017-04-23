@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{VS\Config::APP_NAME}</title>
+    <title>{VS\Framework\Config::APP_NAME}</title>
     <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
     <link href="/assets/css/styles.css" type="text/css" rel="stylesheet">

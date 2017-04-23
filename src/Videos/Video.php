@@ -1,10 +1,10 @@
 <?php
 
-namespace VS\Videos;
+namespace VS\Framework\Videos;
 
-use VS\Config;
-use VS\Routing\Router;
-use VS\User\Account;
+use VS\Framework\Config;
+use VS\Framework\Routing\Router;
+use VS\Framework\User\Account;
 
 /**
  * Class Video

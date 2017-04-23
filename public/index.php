@@ -1,6 +1,6 @@
 <?php
 
-use VS\Routing;
+use VS\Framework\Routing;
 
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT_PATH', realpath(__DIR__ . '/..') . DS);

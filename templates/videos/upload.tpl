@@ -29,7 +29,7 @@
             <div class="form-group">
                 <label for="video">File</label>
                 <input type="file" id="video" name="video">
-                <p class="help-block">Max size: {VS\Config::MAX_UPLOAD_SIZE|file_size}</p>
+                <p class="help-block">Max size: {VS\Framework\Config::MAX_UPLOAD_SIZE|file_size}</p>
             </div>
             {if $data->response}
                 <div class="form-group">

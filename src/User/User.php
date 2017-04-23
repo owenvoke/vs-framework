@@ -1,8 +1,8 @@
 <?php
 
-namespace VS\User;
+namespace VS\Framework\User;
 
-use VS\Config;
+use VS\Framework\Config;
 
 class User
 {

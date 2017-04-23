@@ -1,10 +1,10 @@
 <?php
 
-namespace VS\Controller;
+namespace VS\Framework\Controller;
 
-use VS\Routing\Router;
-use VS\User\Account;
-use VS\User\User;
+use VS\Framework\Routing\Router;
+use VS\Framework\User\Account;
+use VS\Framework\User\User;
 
 class Users extends Controller
 {
