@@ -53,6 +53,20 @@ class Video
         }
     }
 
+    public static function list($page = null)
+    {
+        $Db = Config::connect();
+        if (is_int($page)) {
+            $stmt = $Db->prepare('SELECT * FROM videos LIMIT :offset, 20');
+            $stmt->bindParam(':offset', $page, \PDO::PARAM_INT);
+        } else {
+            $stmt = $Db->prepare('SELECT * FROM videos LIMIT 0, 20');
+        }
+
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_OBJ);
+    }
+
     /**
      * @param object $data
      * @return bool
