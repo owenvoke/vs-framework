@@ -176,7 +176,11 @@ class Video
         }
 
         // Generate file hash
-        $data->hash = sha1_file($data->file['tmp_name']);
+        if (Config::ALLOW_DUPLICATE_FILES) {
+            $data->hash = sha1(time() . mt_rand() . $data->file['tmp_name']);
+        } else {
+            $data->hash = sha1_file($data->file['tmp_name']);
+        }
 
         // Generate destination path
         $destination = ROOT_PATH . 'uploads' . DS . $data->hash . '.' . $data->file_type;
