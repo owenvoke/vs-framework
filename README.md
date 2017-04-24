@@ -1,7 +1,7 @@
-# project-generic-video-site
+# vs/framework
 
 ## Running with Vagrant
-1. Clone via Git with `git clone https://github.com/PXgamer/project-generic-video-site`
+1. Clone via Git with `git clone https://github.com/PXgamer/vs-framework`
 2. Just run `vagrant up` in the root directory.
 3. That's all, just browse to: [http://192.168.69.69](http://192.168.69.69)
 
