@@ -3,3 +3,5 @@
 /logs
 /ubuntu*-console.log
 /templates_c
+/uploads/*
+!/uploads/.lock
