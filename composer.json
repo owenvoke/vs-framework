@@ -1,4 +1,7 @@
 {
+  "name": "vs/framework",
+  "description": "The base framework for the VS site.",
+  "license": "proprietary",
   "require": {
     "nezamy/route": "1.0.*",
     "smarty/smarty": "3.1.*"
