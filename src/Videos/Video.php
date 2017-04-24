@@ -55,6 +55,8 @@ class Video
 
     public static function list($page = null, $limit = 20)
     {
+        $page = ($page - 1) * 20;
+
         $data = new \stdClass();
         $Db = Config::connect();
         if (is_int($page)) {
@@ -68,7 +70,11 @@ class Video
 
         $stmt->execute();
         $data->results = $stmt->fetchAll(\PDO::FETCH_OBJ);
-        $data->count = $stmt->rowCount();
+
+        // Fetch total count
+        $stmt = $Db->prepare('SELECT COUNT(*) AS count FROM videos');
+        $stmt->execute();
+        $data->count = $stmt->fetch(\PDO::FETCH_OBJ)->count;
 
         return $data;
     }
