@@ -220,7 +220,6 @@ class Video
         $cmd = "ffmpeg -i {$data->file['tmp_name']} -deinterlace -an -ss 1 -t 00:00:01 -s 250x130 -r 1 -y -vcodec mjpeg -f mjpeg {$data->thumbnail_path} 2>&1";
 
         exec($cmd, $output, $return_value);
-        var_dump($output);
 
         if (!$return_value) {
             return true;
