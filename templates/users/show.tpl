@@ -118,8 +118,11 @@
                 <div class="panel-body">
                     <div class="video-block home-videos">
                         <div class="row">
-                            <div class="col-orient-ls col-sm-6 col-md-4">
-                                {foreach $data->user->videos as $video}
+                            {foreach $data->user->videos as $video name="videos"}
+                                {if $smarty.foreach.videos.iteration %3 == 0}
+                                    <div class="row">
+                                {/if}
+                                <div class="col-orient-ls col-sm-6 col-md-4">
                                     <div class="thumbnail">
                                         <div class="preview">
                                             <a href="/v/{$video->hash}">
@@ -141,8 +144,11 @@
                                             </p>
                                         </div>
                                     </div>
-                                {/foreach}
-                            </div>
+                                </div>
+                                {if $smarty.foreach.videos.iteration %3 == 0}
+                                    </div>
+                                {/if}
+                            {/foreach}
                         </div>
                     </div>
                 </div>
