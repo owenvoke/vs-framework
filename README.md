@@ -13,3 +13,17 @@ _This basically allows you to connect to the internal MySQL server running on Va
 **Username:** ubuntu  
 **Private Key:** `./.vagrant/machines/default/virtualbox/private_key`  
 **Port:** 2222
+
+## Adding the Composer package repository
+
+1. Browse to your global Composer config (`%AppData%\Composer\config.json` on Windows)
+2. Copy in the following JSON
+```json
+{
+  "repositories": [{
+    "type": "composer",
+    "url": "https://pxgamer:JXYPPJS45M9sPYg7G2bMEnNJ@packages.pxgamer.xyz"
+  }]
+}
+```
+You should now be able to run the following Composer command `composer search vs` which should return `vs/framework` as an option.
