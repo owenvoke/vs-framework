@@ -28,6 +28,7 @@ class Routes
 
         // Videos
         $Route->any('/v/{hash}', [self::CONTROLLERS . 'Videos', 'show']);
+        $Route->any(['/browse', '/browse/?'], [self::CONTROLLERS . 'Videos', 'browse']);
         $Route->any('/upload', [self::CONTROLLERS . 'Videos', 'upload']);
         $Route->any('/videos/{hash}', [self::CONTROLLERS . 'Videos', 'display']);
         $Route->any('/thumbs/{hash}', [self::CONTROLLERS . 'Videos', 'thumb']);

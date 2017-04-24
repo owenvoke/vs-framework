@@ -34,6 +34,20 @@ class Videos extends Controller
         );
     }
 
+    public function browse($page = 0)
+    {
+        $data = new \stdClass();
+
+        $data->videos = Video::list($page);
+
+        $this->smarty->display(
+            'videos/browse.tpl',
+            [
+                'data' => $data
+            ]
+        );
+    }
+
     public function show()
     {
         if (!$this->args['hash']) {
