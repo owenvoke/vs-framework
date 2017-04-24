@@ -34,7 +34,7 @@ class Videos extends Controller
         );
     }
 
-    public function browse($page = 0)
+    public function browse($page = 1)
     {
         $data = new \stdClass();
 

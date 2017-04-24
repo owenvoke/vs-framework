@@ -5,7 +5,7 @@
             <h1>Browse</h1>
         </div>
         <div class="panel-body">
-            {include file='include/pagination.tpl' per_page='20' total=$data->videos->count}
+            {include file='include/pagination.tpl' per_page='20' total=$data->videos->count base_url='/browse/'}
             <div class="video-block home-videos">
                 <div class="row">
                     {foreach $data->videos->results as $video name="videos"}
@@ -41,7 +41,7 @@
                     {/foreach}
                 </div>
             </div>
-            {include file='include/pagination.tpl' per_page='20' total=$data->videos->count}
+            {include file='include/pagination.tpl' per_page='20' total=$data->videos->count base_url='/browse/'}
         </div>
     </div>
 </div>
