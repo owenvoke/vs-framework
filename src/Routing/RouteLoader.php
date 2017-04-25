@@ -9,13 +9,23 @@ use System\Route;
  */
 class RouteLoader
 {
+    /**
+     * @var array|null
+     */
     public static $Modules;
 
+    /**
+     * RouteLoader constructor.
+     */
     public function __construct()
     {
         $this->fetchModules();
     }
 
+    /**
+     * @param Route $Route
+     * @return Route
+     */
     public function autoload(Route $Route)
     {
         foreach (self::$Modules as $module) {
@@ -25,6 +35,9 @@ class RouteLoader
         return $Route;
     }
 
+    /**
+     * @return array
+     */
     public function fetchModules()
     {
         $data = new \stdClass();
@@ -45,5 +58,7 @@ class RouteLoader
         }
 
         self::$Modules = $data->response;
+
+        return self::$Modules;
     }
 }
