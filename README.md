@@ -29,6 +29,23 @@ _This basically allows you to connect to the internal MySQL server running on Va
 ```
 You should now be able to run the following Composer command `composer search vs` which should return `vs/framework` as an option.
 
+## Creating a module
+
+Modules are what VS uses to add additional routes to the framework. There are a few steps to doing this:
+
+*Routes class*  
+Each module requires a `Routes` class under the module namespace, for example with the Api module, this is: `\VS\Api\Routes`.  
+This must extend the `VS\Framework\Routing\PluginRoute` class.  
+Routes are defined using [`nezamy/route`][nezamy/route] as follows:  
+
+```php
+$Route->any('/', ['{controller_class}', '{method}']);
+```
+
+*Controller classes*  
+Controllers should be located under a folder named `src/Controller`.  
+These must extend the `\VS\Framework\Controller\Controller` class which enabled usage of Smarty and the database.
+
 ## Available modules
 
 Modules are installed by running `composer install {module_name}`.
@@ -38,3 +55,4 @@ Modules are installed by running `composer install {module_name}`.
 
 [module/framework]: https://github.com/PXgamer/vs-framework
 [module/api]: https://github.com/PXgamer/vs-api
+[nezamy/route]: https://packagist.org/packages/nezamy/route
