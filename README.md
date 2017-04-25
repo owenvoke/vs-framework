@@ -28,3 +28,10 @@ _This basically allows you to connect to the internal MySQL server running on Va
 }
 ```
 You should now be able to run the following Composer command `composer search vs` which should return `vs/framework` as an option.
+
+## Available modules
+
+Modules are installed by running `composer install {module_name}`.
+
+- `vs/framework` - The base framework for the VS site (required).
+- `vs/api` - The API module for VS.
