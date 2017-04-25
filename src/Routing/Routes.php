@@ -3,7 +3,6 @@
 namespace VS\Framework\Routing;
 
 use System\Route;
-use VS\Framework\Controller\Main;
 
 /**
  * Class Routes
