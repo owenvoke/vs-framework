@@ -36,14 +36,6 @@ class Routes
         // Users
         $Route->any(['/profile', '/profile/{username}'], [self::CONTROLLERS . 'Users', 'show']);
 
-        // Generic Fallback Route
-        $Route->any(
-            '/*',
-            function () {
-                (new Main)->error();
-            }
-        );
-
         return $Route;
     }
 }
