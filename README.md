@@ -2,8 +2,9 @@
 
 ## Running with Vagrant
 1. Clone via Git with `git clone https://github.com/PXgamer/vs-framework`
-2. Just run `vagrant up` in the root directory.
-3. That's all, just browse to: [http://192.168.69.69](http://192.168.69.69)
+2. Run `composer install` in the root directory
+3. Then run `vagrant up` in the root directory
+4. That's all, you should now be able to browse to: [http://192.168.69.69](http://192.168.69.69)
 
 ## Setting up a Vagrant SSH tunnel
 _This basically allows you to connect to the internal MySQL server running on Vagrant from an app such as PhpStorm._
