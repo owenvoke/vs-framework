@@ -33,5 +33,8 @@ You should now be able to run the following Composer command `composer search vs
 
 Modules are installed by running `composer install {module_name}`.
 
-- `vs/framework` - The base framework for the VS site (required).
-- `vs/api` - The API module for VS.
+- [`vs/framework`][module/framework] - The base framework for the VS site (required).
+- [`vs/api`][module/api] - The API module for VS.
+
+[module/framework]: https://github.com/PXgamer/vs-framework
+[module/api]: https://github.com/PXgamer/vs-api
