@@ -23,6 +23,7 @@ class Videos extends Controller
         $data->categories = Video::categories();
 
         if ($data->title != '' && !empty($data->file)) {
+            $data->uploader = (int)Account::user('id');
             $data->response = Video::upload($data);
         }
 

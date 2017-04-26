@@ -88,7 +88,6 @@ class Video
         $data = self::validate($data);
 
         if (!$data->error) {
-            $data->uploader = (int)Account::user('id');
             $stmt = Config::connect()->prepare(
                 'INSERT INTO videos (hash, title, description, category, uploader, date, file_type)
                                 VALUES (:hash, :title, :description, :category, :uploader, :date, :file_type)');
