@@ -12,20 +12,24 @@
                     </video>
                 </div>
                 <div class="panel-group">
-                    <ul class="list-unstyled">
+                    <ul class="list-inline">
                         <li>
                             <span class="fa fa-fw fa-clock-o" title="Upload date"></span>
                             <span>{$data->video->date|absolute_time}</span>
+                        </li>
+                        <li>
+                            <span class="fa fa-fw fa-eye" title="Total views"></span>
+                            <span>{$data->video->stats->views}</span>
+                        </li>
+                        <li>
+                            <span class="fa fa-fw fa-folder-open" title="Category"></span>
+                            <span>{$data->video->category->name}</span>
                         </li>
                         <li>
                             <span class="fa fa-fw fa-user" title="Uploader"></span>
                             <a href="/profile/{$data->video->uploader->username}">
                                 {$data->video->uploader->username}
                             </a>
-                        </li>
-                        <li>
-                            <span class="fa fa-fw fa-eye" title="Total views"></span>
-                            <span>{$data->video->stats->views}</span>
                         </li>
                     </ul>
                 </div>
