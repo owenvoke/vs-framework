@@ -74,7 +74,7 @@ class Video
         // Fetch total count
         $stmt = $Db->prepare('SELECT COUNT(*) AS count FROM videos');
         $stmt->execute();
-        $data->count = $stmt->fetch(\PDO::FETCH_OBJ)->count;
+        $data->count = $stmt->fetch(\PDO::FETCH_OBJ)->count ?? 0;
 
         return $data;
     }
