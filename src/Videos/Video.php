@@ -41,7 +41,7 @@ class Video
             $stmt->execute();
             $this->uploader = $stmt->fetch(\PDO::FETCH_OBJ);
 
-            $stmt = Config::connect()->prepare('SELECT * FROM video_tags WHERE id = :id');
+            $stmt = Config::connect()->prepare('SELECT * FROM videos_tags WHERE id = :id');
             $stmt->bindParam(':id', $this->id, \PDO::PARAM_INT);
             $stmt->execute();
             $this->tags = $stmt->fetchAll(\PDO::FETCH_OBJ);

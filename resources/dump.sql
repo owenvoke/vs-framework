@@ -2,35 +2,38 @@ CREATE DATABASE IF NOT EXISTS vs;
 
 USE vs;
 
-# Create USERS table
+CREATE TABLE IF NOT EXISTS acls (
+  id   BIGINT PRIMARY KEY AUTO_INCREMENT UNIQUE,
+  name VARCHAR(100)
+);
+
+CREATE TABLE IF NOT EXISTS categories (
+  id   BIGINT PRIMARY KEY AUTO_INCREMENT UNIQUE,
+  name VARCHAR(200) UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS tags (
+  id   BIGINT PRIMARY KEY AUTO_INCREMENT UNIQUE,
+  name VARCHAR(150) UNIQUE
+);
+
 CREATE TABLE IF NOT EXISTS users (
   id       BIGINT PRIMARY KEY AUTO_INCREMENT UNIQUE,
   username VARCHAR(200) UNIQUE,
   email    VARCHAR(300) UNIQUE,
   password VARCHAR(500),
   acl      INT                DEFAULT 1,
-  joined   BIGINT
+  joined   BIGINT,
+  CONSTRAINT users_acls_id_fk FOREIGN KEY (acl) REFERENCES acls (id)
 );
 
-# Create USERS_INFO table
 CREATE TABLE IF NOT EXISTS users_info (
-  id     BIGINT PRIMARY KEY UNIQUE,
-  avatar VARCHAR(500)
+  id      BIGINT PRIMARY KEY UNIQUE,
+  avatar  VARCHAR(500),
+  api_key VARCHAR(150) UNIQUE,
+  CONSTRAINT users_info_users_id_fk FOREIGN KEY (id) REFERENCES users (id)
 );
 
-# Create CATEGORIES table
-CREATE TABLE IF NOT EXISTS categories (
-  id   BIGINT PRIMARY KEY AUTO_INCREMENT UNIQUE,
-  name VARCHAR(200) UNIQUE
-);
-
-# Create TAGS table
-CREATE TABLE IF NOT EXISTS tags (
-  id   BIGINT PRIMARY KEY AUTO_INCREMENT UNIQUE,
-  name VARCHAR(150) UNIQUE
-);
-
-# Create VIDEOS table
 CREATE TABLE IF NOT EXISTS videos (
   id          BIGINT PRIMARY KEY AUTO_INCREMENT UNIQUE,
   hash        VARCHAR(40) UNIQUE,
@@ -40,19 +43,31 @@ CREATE TABLE IF NOT EXISTS videos (
   category    BIGINT,
   date        BIGINT,
   file_type   VARCHAR(10),
-  views       BIGINT             DEFAULT 0
+  views       BIGINT             DEFAULT 0,
+  CONSTRAINT videos_categories_id_fk FOREIGN KEY (category) REFERENCES categories (id)
 );
 
-# Create VIDEO_TAGS table
-CREATE TABLE IF NOT EXISTS video_tags (
+CREATE TABLE IF NOT EXISTS videos_tags (
   id  BIGINT PRIMARY KEY,
-  tag BIGINT
+  tag BIGINT,
+  CONSTRAINT videos_tags_videos_id_fk FOREIGN KEY (id) REFERENCES videos (id),
+  CONSTRAINT videos_tags_tags_id_fk FOREIGN KEY (tag) REFERENCES tags (id)
 );
 
-# Create ACLS table
-CREATE TABLE IF NOT EXISTS acls (
-  id   BIGINT PRIMARY KEY AUTO_INCREMENT UNIQUE,
-  name VARCHAR(100)
+CREATE TABLE IF NOT EXISTS videos_stats
+(
+  id    BIGINT PRIMARY KEY UNIQUE NOT NULL,
+  views BIGINT DEFAULT 0          NOT NULL,
+  CONSTRAINT videos_stats_videos_id_fk FOREIGN KEY (id) REFERENCES videos (id)
+);
+
+CREATE TABLE IF NOT EXISTS videos_ratings
+(
+  id     BIGINT PRIMARY KEY UNIQUE NOT NULL,
+  user   BIGINT DEFAULT 0          NOT NULL,
+  rating TINYINT DEFAULT 0         NOT NULL,
+  CONSTRAINT videos_ratings_users_id_fk FOREIGN KEY (user) REFERENCES users (id),
+  CONSTRAINT videos_ratings_videos_id_fk FOREIGN KEY (id) REFERENCES videos (id)
 );
 
 # Populate basics
