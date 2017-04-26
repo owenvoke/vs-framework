@@ -43,7 +43,6 @@ CREATE TABLE IF NOT EXISTS videos (
   category    BIGINT,
   date        BIGINT,
   file_type   VARCHAR(10),
-  views       BIGINT             DEFAULT 0,
   CONSTRAINT videos_categories_id_fk FOREIGN KEY (category) REFERENCES categories (id)
 );
 
