@@ -41,6 +41,11 @@ class Account
 
         if ($result && password_verify($password, $result->password)) {
             unset($result->password);
+            $stmt = $this->db->prepare('SELECT * FROM users_info WHERE id = :id');
+            $stmt->bindParam(':id', $result->id, \PDO::PARAM_STR);
+            $stmt->execute();
+            $result->info = $stmt->fetch(\PDO::FETCH_OBJ);
+
             $_SESSION['user'] = $result;
 
             header('Location: /');
