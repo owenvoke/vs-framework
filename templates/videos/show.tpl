@@ -14,14 +14,18 @@
                 <div class="panel-group">
                     <ul class="list-unstyled">
                         <li>
-                            <span>Uploaded:</span>
+                            <span class="fa fa-fw fa-clock-o" title="Upload date"></span>
                             <span>{$data->video->date|absolute_time}</span>
                         </li>
                         <li>
-                            <span>Uploaded by:</span>
+                            <span class="fa fa-fw fa-user" title="Uploader"></span>
                             <a href="/profile/{$data->video->uploader->username}">
                                 {$data->video->uploader->username}
                             </a>
+                        </li>
+                        <li>
+                            <span class="fa fa-fw fa-eye" title="Total views"></span>
+                            <span>{$data->video->stats->views}</span>
                         </li>
                     </ul>
                 </div>
