@@ -81,8 +81,11 @@ class Account
 
             $result = (int)$this->db->lastInsertId();
             if ($result != 0) {
-                $stmt = $this->db->prepare('INSERT INTO users_info (id) VALUES (:id)');
+                $api_key = sha1($data->joined . $data->username . time());
+
+                $stmt = $this->db->prepare('INSERT INTO users_info (id, api_key) VALUES (:id, :api_key)');
                 $stmt->bindParam(':id', $result, \PDO::PARAM_INT);
+                $stmt->bindParam(':api_key', $api_key, \PDO::PARAM_INT);
                 $stmt->execute();
                 header('Location: /login');
                 return true;
