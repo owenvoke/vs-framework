@@ -15,25 +15,11 @@ _This basically allows you to connect to the internal MySQL server running on Va
 **Private Key:** `./.vagrant/machines/default/virtualbox/private_key`  
 **Port:** 2222
 
-## Adding the Composer package repository
-
-1. Browse to your global Composer config (`%AppData%\Composer\config.json` on Windows)
-2. Copy in the following JSON
-```json
-{
-  "repositories": [{
-    "type": "composer",
-    "url": "https://pxgamer:JXYPPJS45M9sPYg7G2bMEnNJ@packages.pxgamer.xyz"
-  }]
-}
-```
-You should now be able to run the following Composer command `composer search vs` which should return `vs/framework` as an option.
-
 ## Creating a module
 
 Modules are what VS uses to add additional routes to the framework. There are a few steps to doing this:
 
-*Routes class*  
+**Routes class**  
 Each module requires a `Routes` class under the module namespace, for example with the Api module, this is: `\VS\Api\Routes`.  
 This must extend the `VS\Framework\Routing\PluginRoute` class.  
 Routes are defined using [`nezamy/route`][nezamy/route] as follows:  
@@ -42,7 +28,7 @@ Routes are defined using [`nezamy/route`][nezamy/route] as follows:
 $Route->any('/', ['{controller_class}', '{method}']);
 ```
 
-*Controller classes*  
+**Controller classes**  
 Controllers should be located under a folder named `src/Controller`.  
 These must extend the `\VS\Framework\Controller\Controller` class which enabled usage of Smarty and the database.
 
