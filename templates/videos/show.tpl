@@ -12,28 +12,42 @@
                     </video>
                 </div>
                 <div class="panel-group">
-                    <ul class="list-inline">
-                        <li>
+                    <div class="btn-group pull-left">
+                        <div class="btn btn-sm btn-default btn-inverse btn-no-click">
                             <span class="fa fa-fw fa-clock-o" title="Upload date"></span>
                             <span>{$data->video->date|absolute_time}</span>
-                        </li>
-                        <li>
+                        </div>
+                        <div class="btn btn-sm btn-default btn-inverse btn-no-click">
                             <span class="fa fa-fw fa-eye" title="Total views"></span>
                             <span>{$data->video->stats->views}</span>
-                        </li>
-                        <li>
+                        </div>
+                        <div class="btn btn-sm btn-default btn-inverse btn-no-click">
                             <span class="fa fa-fw fa-folder-open" title="Category"></span>
                             <a href="/category/{$data->video->category->id}/">
                                 {$data->video->category->name}
                             </a>
-                        </li>
-                        <li>
+                        </div>
+                        <div class="btn btn-sm btn-default btn-inverse btn-no-click">
                             <span class="fa fa-fw fa-user" title="Uploader"></span>
                             <a href="/profile/{$data->video->uploader->username}">
                                 {$data->video->uploader->username}
                             </a>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
+                    <div class="btn-group pull-right">
+                        <a href="" class="btn btn-default btn-sm">
+                            <span class="fa fa-fw fa-share-alt"></span>
+                            Share
+                        </a>
+                        <a href="" class="btn btn-default btn-sm">
+                            <span class="fa fa-fw fa-star"></span>
+                            Feature this
+                        </a>
+                        <a href="" class="btn btn-default btn-sm">
+                            <span class="fa fa-fw fa-flag"></span>
+                            Report
+                        </a>
+                    </div>
                 </div>
                 {if $data->video->description}
                     <div class="panel-group">
