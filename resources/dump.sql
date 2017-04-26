@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS users (
   username VARCHAR(200) UNIQUE,
   email    VARCHAR(300) UNIQUE,
   password VARCHAR(500),
-  acl      INT                DEFAULT 1,
+  acl      BIGINT             DEFAULT 1,
   joined   BIGINT,
   CONSTRAINT users_acls_id_fk FOREIGN KEY (acl) REFERENCES acls (id)
 );
