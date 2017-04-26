@@ -32,6 +32,30 @@ $Route->any('/', ['{controller_class}', '{method}']);
 Controllers should be located under a folder named `src/Controller`.  
 These must extend the `\VS\Framework\Controller\Controller` class which enabled usage of Smarty and the database.
 
+Using Smarty from within a controller is as simple as using `$this->smarty`, for example:
+```php
+$this->smarty->display(
+    '{template}.tpl',
+    [
+        'variable' => 'value'
+    ]
+);
+```
+
+You can also use the \PDO functions from `$this->db` such as:
+```php
+$this->db->query('SELECT * FROM users');
+```
+
+Also available is the `Account` class from `$this->user` which allows you to use functions such as:
+```php
+$this->user::auth();
+$this->user::user($key);
+$this->user->login($username, $password);
+$this->user->logout();
+$this->user->register($data);
+```
+
 ## Available modules
 
 Modules are installed by running `composer install {module_name}`.
