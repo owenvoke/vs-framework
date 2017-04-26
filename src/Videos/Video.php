@@ -4,7 +4,6 @@ namespace VS\Framework\Videos;
 
 use VS\Framework\Config;
 use VS\Framework\Routing\Router;
-use VS\Framework\User\Account;
 
 /**
  * Class Video
@@ -41,6 +40,11 @@ class Video
             $stmt->execute();
             $this->uploader = $stmt->fetch(\PDO::FETCH_OBJ);
 
+            $stmt = Config::connect()->prepare('SELECT * FROM videos_stats WHERE id = :id');
+            $stmt->bindParam(':id', $this->id, \PDO::PARAM_INT);
+            $stmt->execute();
+            $this->stats = $stmt->fetch(\PDO::FETCH_OBJ);
+
             $stmt = Config::connect()->prepare('SELECT * FROM videos_tags WHERE id = :id');
             $stmt->bindParam(':id', $this->id, \PDO::PARAM_INT);
             $stmt->execute();
@@ -60,11 +64,11 @@ class Video
         $data = new \stdClass();
         $Db = Config::connect();
         if (is_int($page)) {
-            $stmt = $Db->prepare('SELECT * FROM videos LIMIT :offset, :limit');
+            $stmt = $Db->prepare('SELECT * FROM videos LEFT JOIN videos_stats ON videos.id = videos_stats.id LIMIT :offset, :limit');
             $stmt->bindParam(':offset', $page, \PDO::PARAM_INT);
             $stmt->bindParam(':limit', $limit, \PDO::PARAM_INT);
         } else {
-            $stmt = $Db->prepare('SELECT * FROM videos LIMIT 0, :limit');
+            $stmt = $Db->prepare('SELECT * FROM videos LEFT JOIN videos_stats ON videos.id = videos_stats.id LIMIT 0, :limit');
             $stmt->bindParam(':limit', $limit, \PDO::PARAM_INT);
         }
 
@@ -87,7 +91,7 @@ class Video
     {
         $data = self::validate($data);
 
-        if (!$data->error) {
+        if (!isset($data->error) || !$data->error) {
             $stmt = Config::connect()->prepare(
                 'INSERT INTO videos (hash, title, description, category, uploader, date, file_type)
                                 VALUES (:hash, :title, :description, :category, :uploader, :date, :file_type)');
@@ -102,7 +106,11 @@ class Video
 
             $data->id = (int)Config::connect()->lastInsertId();
             if ($data->id != 0) {
+                $stmt = Config::connect()->prepare('INSERT INTO videos_stats (id) VALUES (:id)');
+                $stmt->bindParam(':id', $data->id);
+                $stmt->execute();
                 Router::redirect('/v/' . $data->hash);
+                return true;
             } else {
                 $data->error = 'Failed to upload video.';
             }
@@ -188,7 +196,7 @@ class Video
         }
 
         // Check for date change (this is unlikely)
-        if ($data->time > time()) {
+        if ($data->date > time()) {
             $data->error = 'Invalid upload date.';
             return $data;
         }
