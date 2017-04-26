@@ -23,7 +23,9 @@
                         </li>
                         <li>
                             <span class="fa fa-fw fa-folder-open" title="Category"></span>
-                            <span>{$data->video->category->name}</span>
+                            <a href="/category/{$data->video->category->id}/">
+                                {$data->video->category->name}
+                            </a>
                         </li>
                         <li>
                             <span class="fa fa-fw fa-user" title="Uploader"></span>
