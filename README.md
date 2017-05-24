@@ -1,19 +1,10 @@
 # vs/framework
 
-## Running with Vagrant
+## Installation
 1. Clone via Git with `git clone https://github.com/PXgamer/vs-framework`
 2. Run `composer install` in the root directory
-3. Then run `vagrant up` in the root directory
-4. That's all, you should now be able to browse to: [http://192.168.69.69](http://192.168.69.69)
-
-## Setting up a Vagrant SSH tunnel
-_This basically allows you to connect to the internal MySQL server running on Vagrant from an app such as PhpStorm._
-
-#### SSH Tunnel Details:
-**Host:** 127.0.0.1  
-**Username:** ubuntu  
-**Private Key:** `./.vagrant/machines/default/virtualbox/private_key`  
-**Port:** 2222
+3. Run the SQL code (`resources/dump.sql`)
+4. That's all, you should now be able to browse to your chosen URL (Example: `php -S localhost:69`, then browse to [localhost:69](https://localhost:69)
 
 ## Creating a module
 
